@@ -1,21 +1,43 @@
 int turn = 0;
+byte turn = 0;
 bool flag[2] = {false, false};
 
 Process 0:
+proctype process1(){
+    do
+    ::true ->
+        turn = 1;
+        do  
+          :: turn == 0 -> break;
+          :: else -> skip;
+         od
+
+        turn=0;
+    od
+}
+
+proctype process2(){
+    do
+    ::true ->
+        turn = 2; 
+         do  
+          :: turn == 1 -> break;
+          :: else -> skip;
+         od
+
+        turn=1;
+    od
+}
+
+/*Process 0:
     flag[0] = true;
     turn = 1;
     while (flag[1] && turn == 1);
-    // Critical section
-    ...
-    // End of critical section
-    flag[0] = false;
-
-Process 1:
-    flag[1] = true;
-    turn = 0;
-    while (flag[0] && turn == 0);
+@@ -17,5 +43,5 @@ Process 1:
     // Critical section
     ...
     // End of critical section
     flag[1] = false;
+    flag[1] = false;*/
+
 
